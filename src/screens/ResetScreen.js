@@ -26,8 +26,9 @@ export default function ResetPassword({ navigation }) {
       const response = await forgetPassword(email.trim());
       setLoading(false);
       if (response.ok && response.data.status === 'SUCCESS') {
+        // Don't auto-fill token - user must verify by entering it from email
         setStep(2);
-        showAlert('Success', `Reset token sent to ${email}`);
+        showAlert('Success', `Reset link sent to ${email}. Check your email for the token.`);
       } else {
         showAlert('Error', response.data.error || 'Failed to send reset code');
       }
@@ -82,7 +83,7 @@ export default function ResetPassword({ navigation }) {
           <Text style={styles.logoText}>NOTES</Text>
         </View>
         <Text style={styles.subtitle}>
-          {step === 1 ? 'Reset your password' : 'Enter new password'}
+          {step === 1 ? 'Reset your password' : 'Enter reset token'}
         </Text>
 
         {/* Step 1: Email verification */}
@@ -122,11 +123,13 @@ export default function ResetPassword({ navigation }) {
         {/* Step 2: Password reset */}
         {step === 2 && (
           <>
+            <Text style={styles.instructionText}>Check your email for the reset token</Text>
+            
             <View style={styles.inputGroup}>
               <Text style={styles.label}>RESET TOKEN</Text>
               <TextInput
                 style={[styles.input, focusedField === 'token' && styles.inputFocused]}
-                placeholder="Paste token from email"
+                placeholder="Paste the token from your email"
                 placeholderTextColor="#333"
                 value={token}
                 onChangeText={setToken}
@@ -231,6 +234,14 @@ const styles = StyleSheet.create({
     marginBottom: 48,
     letterSpacing: 2,
     textTransform: 'uppercase',
+  },
+  instructionText: {
+    fontSize: 12,
+    color: '#888',
+    textAlign: 'center',
+    marginBottom: 24,
+    letterSpacing: 1,
+    fontStyle: 'italic',
   },
   inputGroup: {
     marginBottom: 20,
