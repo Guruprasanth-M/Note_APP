@@ -1,12 +1,13 @@
 import React, { useState, useCallback } from 'react';
 import {
-  View, Text, FlatList, TouchableOpacity, StyleSheet,
+  View, Text, FlatList, TouchableOpacity,
   TextInput, Modal, ActivityIndicator, RefreshControl,
 } from 'react-native';
 import { showAlert, showConfirm } from '../alertHelper';
 import { useFocusEffect } from '@react-navigation/native';
 import { useAuth } from '../AuthContext';
 import * as api from '../api';
+import { foldersStyles as styles, ACCENT } from '../styles/foldersScreen.styles';
 
 export default function FoldersScreen({ navigation }) {
   const { authFetch, signOut, user } = useAuth();
@@ -179,124 +180,4 @@ export default function FoldersScreen({ navigation }) {
   );
 }
 
-const ACCENT = '#00f5d4';
-const COLORS = ['#00f5d4', '#ff6b6b', '#ffd93d', '#6c5ce7', '#a29bfe', '#fd79a8', '#00cec9'];
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#000' },
-  center: { justifyContent: 'center', alignItems: 'center' },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    paddingHorizontal: 24,
-    paddingTop: 64,
-    paddingBottom: 16,
-  },
-  greeting: { fontSize: 13, color: '#444', letterSpacing: 1, fontWeight: '500' },
-  headerTitle: {
-    fontSize: 32,
-    fontWeight: '900',
-    color: '#fff',
-    marginTop: 4,
-    letterSpacing: 6,
-  },
-  logoutBtn: {
-    borderWidth: 1,
-    borderColor: '#222',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-  },
-  logoutText: { color: '#ff4757', fontWeight: '700', fontSize: 12, letterSpacing: 2 },
-  statsBar: {
-    flexDirection: 'row',
-    marginHorizontal: 24,
-    marginTop: 12,
-    marginBottom: 20,
-    paddingVertical: 14,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: '#111',
-  },
-  stat: { flex: 1, alignItems: 'center' },
-  statNum: { fontSize: 24, fontWeight: '900', color: '#fff' },
-  statLabel: { fontSize: 10, color: '#444', letterSpacing: 3, marginTop: 2, fontWeight: '600' },
-  statDivider: { width: 1, backgroundColor: '#1a1a1a' },
-  list: { paddingHorizontal: 24, paddingBottom: 100 },
-  folderCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#0a0a0a',
-    padding: 18,
-    marginBottom: 8,
-    borderWidth: 1,
-    borderColor: '#141414',
-  },
-  folderLeft: { flexDirection: 'row', alignItems: 'center' },
-  folderDot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    marginRight: 16,
-  },
-  folderName: { fontSize: 17, fontWeight: '700', color: '#fff' },
-  folderCount: { fontSize: 12, color: '#444', marginTop: 2, fontWeight: '500' },
-  arrow: { fontSize: 18, color: '#333' },
-  emptyContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  empty: { alignItems: 'center' },
-  emptyIcon: { fontSize: 48, color: '#222', fontWeight: '900', marginBottom: 12 },
-  emptyText: { fontSize: 16, color: '#333', fontWeight: '800', letterSpacing: 4 },
-  emptySubtext: { fontSize: 13, color: '#222', marginTop: 8, letterSpacing: 1 },
-  fab: {
-    position: 'absolute',
-    bottom: 32,
-    right: 24,
-    width: 56,
-    height: 56,
-    backgroundColor: ACCENT,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  fabText: { fontSize: 28, color: '#000', fontWeight: '300', lineHeight: 30 },
-  // Modal
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.85)',
-    justifyContent: 'center',
-    paddingHorizontal: 28,
-  },
-  modalContent: {
-    backgroundColor: '#0a0a0a',
-    padding: 28,
-    borderWidth: 1,
-    borderColor: '#1a1a1a',
-  },
-  modalTitle: {
-    fontSize: 14,
-    fontWeight: '800',
-    color: '#fff',
-    letterSpacing: 4,
-    marginBottom: 20,
-  },
-  modalInput: {
-    backgroundColor: '#000',
-    padding: 16,
-    fontSize: 16,
-    color: '#fff',
-    borderWidth: 1,
-    borderColor: '#222',
-    marginBottom: 24,
-    fontWeight: '500',
-  },
-  modalActions: { flexDirection: 'row', justifyContent: 'flex-end', gap: 12 },
-  modalCancel: { paddingVertical: 12, paddingHorizontal: 20 },
-  modalCancelText: { color: '#444', fontSize: 13, fontWeight: '700', letterSpacing: 2 },
-  modalCreate: {
-    backgroundColor: ACCENT,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-  },
-  modalCreateText: { color: '#000', fontSize: 13, fontWeight: '800', letterSpacing: 2 },
-  buttonDisabled: { opacity: 0.5 },
-});
+const COLORS = ['#3B82F6', '#60A5FA', '#10B981', '#8B5CF6', '#EC4899', '#F59E0B', '#06B6D4'];

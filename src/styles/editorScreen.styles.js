@@ -1,0 +1,81 @@
+import { StyleSheet, Platform } from 'react-native';
+import { ACCENT, commonStyles } from './common.styles';
+
+export const editorStyles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: commonStyles.BG_PRIMARY },
+  center: { justifyContent: 'center', alignItems: 'center' },
+  topBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 12,
+    paddingBottom: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: commonStyles.BORDER_COLOR,
+  },
+  topBarLabel: {
+    fontSize: 12,
+    color: ACCENT,
+    fontWeight: '700',
+    letterSpacing: 1.5,
+    textTransform: 'uppercase',
+  },
+  charCount: {
+    backgroundColor: commonStyles.BG_SECONDARY,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: commonStyles.BORDER_COLOR,
+  },
+  charCountText: {
+    fontSize: 11,
+    color: commonStyles.TEXT_TERTIARY,
+    fontWeight: '700',
+    fontFamily: Platform.OS === 'ios' ? 'Menlo' : 'monospace',
+  },
+  scroll: { flex: 1, paddingHorizontal: 20, paddingTop: 20 },
+  titleInput: {
+    fontSize: 28,
+    fontWeight: '800',
+    color: commonStyles.TEXT_PRIMARY,
+    paddingVertical: 8,
+    marginBottom: 20,
+  },
+  bodyInput: {
+    fontSize: 16,
+    color: commonStyles.TEXT_SECONDARY,
+    lineHeight: 28,
+    minHeight: 300,
+    fontWeight: '400',
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    paddingBottom: 30,
+    borderTopWidth: 1,
+    borderTopColor: commonStyles.BORDER_COLOR,
+    backgroundColor: commonStyles.BG_SECONDARY,
+  },
+  cancelBtn: { paddingVertical: 12, paddingHorizontal: 4 },
+  cancelText: { color: commonStyles.TEXT_TERTIARY, fontSize: 13, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' },
+  saveButton: {
+    backgroundColor: ACCENT,
+    paddingVertical: 12,
+    paddingHorizontal: 28,
+    borderRadius: 10,
+    shadowColor: ACCENT,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  buttonDisabled: { opacity: 0.6 },
+  saveText: { color: '#FFF', fontSize: 14, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' },
+});
+
+export { ACCENT };
