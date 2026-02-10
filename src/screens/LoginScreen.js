@@ -34,7 +34,7 @@ export default function LoginScreen({ navigation }) {
       <View style={styles.inner}>
         {/* Logo area */}
         <View style={styles.logoBox}>
-          <Text style={styles.logoIcon}>⚡</Text>
+          <Text style={styles.logoIcon}></Text>
           <Text style={styles.logoText}>NOTES</Text>
         </View>
         <Text style={styles.subtitle}>Sign in to continue</Text>
@@ -80,6 +80,16 @@ export default function LoginScreen({ navigation }) {
           ) : (
             <Text style={styles.buttonText}>→  LOGIN</Text>
           )}
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.secondaryButton}
+          onPress={() => navigation.navigate('Reset')}
+          activeOpacity={0.7}
+        >
+          <Text style={styles.secondaryButtonText}>FORGOT PASSWORD?</Text>
+
+          <Text style={styles.secondaryButtonText}>CREATE ACCOUNT</Text>
         </TouchableOpacity>
 
         {/* Divider */}

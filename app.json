@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Notes",
-    "slug": "notes-app",
+    "name": "Notes Taker",
+    "slug": "Notes Taker",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
@@ -11,13 +11,13 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.guruprasanth.notesapp"
+      "bundleIdentifier": "Notes Taker"
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#000000"
       },
-      "package": "com.guruprasanth.notesapp"
+      "package": "Notes Taker"
     },
     "owner": "guruprasanth1",
     "extra": {

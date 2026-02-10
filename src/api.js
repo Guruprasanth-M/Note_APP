@@ -47,6 +47,16 @@ export async function login(username, password) {
   return post('login', { username, password });
 }
 
+/** POST /forgetpassword — Request password reset link */
+export async function forgetPassword(email) {
+  return post('requestpasswordreset', { email });
+}
+
+/** POST /resetpassword — Reset password with token */
+export async function resetPassword(token, password) {
+  return post('resetpassword', { token, password });
+}
+
 /** POST /logout — Terminate current session */
 export async function logout(token) {
   return post('logout', {}, token);
