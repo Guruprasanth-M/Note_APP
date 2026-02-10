@@ -19,11 +19,11 @@
       },
       "package": "com.guruprasanth.notesapp"
     },
+    "owner": "guruprasanth1",
     "extra": {
       "eas": {
-        "projectId": "3e3cc611-9e28-4574-9d2b-57a76cdfbb73"
+        "projectId": "6111ba9c-b547-4615-847d-3223b9aaecda"
       }
-    },
-    "owner": "guruprasanth"
+    }
   }
 }
