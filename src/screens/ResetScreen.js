@@ -6,7 +6,7 @@ import {
 import { useAuth } from '../AuthContext';
 import { showAlert } from '../alertHelper';
 import { forgetPassword, resetPassword } from '../api';
-import { styles } from './ResetScreen.styles';
+import { authStyles as styles } from '../styles/authScreens.styles';
 
 export default function ResetPassword({ navigation }) {
   const [email, setEmail] = useState('');

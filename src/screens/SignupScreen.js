@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import {
   View, Text, TextInput, TouchableOpacity,
-  StyleSheet, KeyboardAvoidingView, Platform, ActivityIndicator,
+  KeyboardAvoidingView, Platform, ActivityIndicator,
   ScrollView,
 } from 'react-native';
 import { useAuth } from '../AuthContext';
 import { showAlert, showConfirm } from '../alertHelper';
+import { signupStyles as styles } from '../styles/signupScreen.styles';
 
 export default function SignupScreen({ navigation }) {
   const { signUp } = useAuth();
@@ -86,80 +87,3 @@ export default function SignupScreen({ navigation }) {
     </KeyboardAvoidingView>
   );
 }
-
-const ACCENT = '#00f5d4';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000',
-  },
-  inner: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 28,
-    paddingVertical: 60,
-  },
-  title: {
-    fontSize: 40,
-    fontWeight: '900',
-    color: '#fff',
-    lineHeight: 46,
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 13,
-    color: '#444',
-    marginBottom: 40,
-    letterSpacing: 2,
-    textTransform: 'uppercase',
-  },
-  inputGroup: {
-    marginBottom: 18,
-  },
-  label: {
-    fontSize: 11,
-    color: '#555',
-    letterSpacing: 3,
-    marginBottom: 8,
-    fontWeight: '600',
-  },
-  input: {
-    backgroundColor: '#0a0a0a',
-    padding: 16,
-    fontSize: 16,
-    color: '#fff',
-    borderWidth: 1,
-    borderColor: '#1a1a1a',
-    fontWeight: '500',
-  },
-  inputFocused: {
-    borderColor: ACCENT,
-    backgroundColor: '#050505',
-  },
-  button: {
-    backgroundColor: ACCENT,
-    padding: 18,
-    alignItems: 'center',
-    marginTop: 16,
-  },
-  buttonDisabled: {
-    opacity: 0.5,
-  },
-  buttonText: {
-    color: '#000',
-    fontSize: 15,
-    fontWeight: '800',
-    letterSpacing: 3,
-  },
-  backLink: {
-    marginTop: 24,
-    alignItems: 'center',
-  },
-  backText: {
-    color: '#444',
-    fontSize: 13,
-    fontWeight: '600',
-    letterSpacing: 2,
-  },
-});
