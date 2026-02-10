@@ -7,6 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import { AuthProvider, useAuth } from './src/AuthContext';
 import LoginScreen from './src/screens/LoginScreen';
 import SignupScreen from './src/screens/SignupScreen';
+import ResetScreen from './src/screens/ResetScreen';
 import FoldersScreen from './src/screens/FoldersScreen';
 import NotesScreen from './src/screens/NotesScreen';
 import EditorScreen from './src/screens/EditorScreen';
@@ -26,6 +27,7 @@ function AuthStack() {
     <Stack.Navigator screenOptions={{ ...screenOptions, headerShown: false }}>
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />
+      <Stack.Screen name="Reset" component={ResetScreen} />
     </Stack.Navigator>
   );
 }
