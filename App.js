@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { ActivityIndicator, View, SafeAreaView, StatusBar } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { ActivityIndicator, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
-import ErrorBoundary from './src/ErrorBoundary';
 import { AuthProvider, useAuth } from './src/AuthContext';
 import LoginScreen from './src/screens/LoginScreen';
 import SignupScreen from './src/screens/SignupScreen';
@@ -11,13 +11,13 @@ import FoldersScreen from './src/screens/FoldersScreen';
 import NotesScreen from './src/screens/NotesScreen';
 import EditorScreen from './src/screens/EditorScreen';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 const screenOptions = {
   headerStyle: { backgroundColor: '#000', borderBottomWidth: 0, elevation: 0, shadowOpacity: 0 },
   headerTintColor: '#fff',
   headerTitleStyle: { fontWeight: '800', fontSize: 14, letterSpacing: 3 },
-  contentStyle: { backgroundColor: '#000' },
+  cardStyle: { backgroundColor: '#000' },
   headerShadowVisible: false,
 };
 
@@ -65,38 +65,18 @@ function RootNavigator() {
     );
   }
 
-  try {
-    return (
-      <NavigationContainer>
-        {isLoggedIn ? <AppStack /> : <AuthStack />}
-      </NavigationContainer>
-    );
-  } catch (error) {
-    console.error('Navigation Error:', error);
-    return (
-      <View style={{ flex: 1, backgroundColor: '#000', justifyContent: 'center', alignItems: 'center', padding: 20 }}>
-        <Text style={{ color: '#ff4444', fontSize: 16, marginBottom: 10, textAlign: 'center' }}>
-          Navigation Error
-        </Text>
-        <Text style={{ color: '#aaa', fontSize: 12, textAlign: 'center', fontFamily: 'monospace' }}>
-          {error.message}
-        </Text>
-      </View>
-    );
-  }
+  return (
+    <NavigationContainer>
+      {isLoggedIn ? <AppStack /> : <AuthStack />}
+    </NavigationContainer>
+  );
 }
 
 export default function App() {
   return (
-    <ErrorBoundary>
-      <AuthProvider>
-        <View style={{ flex: 1, backgroundColor: '#000' }}>
-          <SafeAreaView style={{ flex: 1 }}>
-            <RootNavigator />
-            <StatusBar barStyle="light-content" backgroundColor="#000" />
-          </SafeAreaView>
-        </View>
-      </AuthProvider>
-    </ErrorBoundary>
+    <AuthProvider>
+      <StatusBar style="light" />
+      <RootNavigator />
+    </AuthProvider>
   );
 }

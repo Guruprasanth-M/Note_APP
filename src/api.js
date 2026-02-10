@@ -22,27 +22,16 @@ async function post(endpoint, body = {}, token = null) {
     .join('&');
 
   try {
-    console.log(`[API] POST ${API_BASE}/${endpoint}`);
     const response = await fetch(`${API_BASE}/${endpoint}`, {
       method: 'POST',
       headers,
       body: formBody || undefined,
-      timeout: 10000, // 10 second timeout
     });
 
     const data = await response.json();
-    console.log(`[API] Response from ${endpoint}: ${response.status}`, data);
     return { ok: response.ok, status: response.status, data };
   } catch (error) {
-    console.error(`[API] Error calling ${endpoint}:`, error.message);
-    return { 
-      ok: false, 
-      status: 0, 
-      data: { 
-        status: 'FAILED', 
-        msg: `Network error — ${error.message}. Make sure you're connected and the API is reachable.` 
-      } 
-    };
+    return { ok: false, status: 0, data: { status: 'FAILED', msg: 'Network error — check your connection' } };
   }
 }
 

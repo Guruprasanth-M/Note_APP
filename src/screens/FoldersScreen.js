@@ -1,8 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import {
   View, Text, FlatList, TouchableOpacity, StyleSheet,
-  Alert, TextInput, Modal, ActivityIndicator, RefreshControl,
+  TextInput, Modal, ActivityIndicator, RefreshControl,
 } from 'react-native';
+import { showAlert, showConfirm } from '../alertHelper';
 import { useFocusEffect } from '@react-navigation/native';
 import { useAuth } from '../AuthContext';
 import * as api from '../api';
@@ -46,25 +47,19 @@ export default function FoldersScreen({ navigation }) {
       setModalVisible(false);
       loadFolders();
     } else {
-      Alert.alert('Error', res.data.msg || 'Failed to create folder');
+      showAlert('Error', res.data.msg || 'Failed to create folder');
     }
   };
 
   const handleDeleteFolder = (folder) => {
-    Alert.alert(
+    showConfirm(
       'Delete Folder',
       `Delete "${folder.name}" and all its notes?`,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Delete', style: 'destructive',
-          onPress: async () => {
-            const res = await authFetch(api.deleteFolder, folder.id);
-            if (res.data.status === 'SUCCESS') loadFolders();
-            else Alert.alert('Error', res.data.msg || 'Failed to delete');
-          }
-        },
-      ]
+      async () => {
+        const res = await authFetch(api.deleteFolder, folder.id);
+        if (res.data.status === 'SUCCESS') loadFolders();
+        else showAlert('Error', res.data.msg || 'Failed to delete');
+      }
     );
   };
 

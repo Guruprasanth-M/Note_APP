@@ -22,13 +22,7 @@ export function AuthProvider({ children }) {
           setRefreshToken(session.refreshToken);
         }
       } catch (e) {
-        console.warn('Failed to load session from AsyncStorage:', e.message);
-        // Reset storage if corrupted
-        try {
-          await AsyncStorage.removeItem('session');
-        } catch (e2) {
-          console.warn('Failed to clear corrupted session:', e2.message);
-        }
+        // ignore
       }
       setLoading(false);
     })();

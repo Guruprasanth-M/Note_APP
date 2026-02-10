@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import {
   View, Text, TextInput, TouchableOpacity,
-  StyleSheet, KeyboardAvoidingView, Platform, Alert, ActivityIndicator,
+  StyleSheet, KeyboardAvoidingView, Platform, ActivityIndicator,
 } from 'react-native';
 import { useAuth } from '../AuthContext';
+import { showAlert } from '../alertHelper';
 
 export default function LoginScreen({ navigation }) {
   const { signIn } = useAuth();
@@ -14,14 +15,14 @@ export default function LoginScreen({ navigation }) {
 
   const handleLogin = async () => {
     if (!username.trim() || !password.trim()) {
-      Alert.alert('Error', 'Please enter username and password');
+      showAlert('Error', 'Please enter username and password');
       return;
     }
     setLoading(true);
     const result = await signIn(username.trim(), password);
     setLoading(false);
     if (!result.success) {
-      Alert.alert('Login Failed', result.error);
+      showAlert('Login Failed', result.error);
     }
   };
 

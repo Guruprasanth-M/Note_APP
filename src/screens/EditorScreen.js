@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {
   View, Text, TextInput, TouchableOpacity, StyleSheet,
-  Alert, ActivityIndicator, KeyboardAvoidingView, Platform, ScrollView,
+  ActivityIndicator, KeyboardAvoidingView, Platform, ScrollView,
 } from 'react-native';
+import { showAlert } from '../alertHelper';
 import { useAuth } from '../AuthContext';
 import * as api from '../api';
 
@@ -22,7 +23,7 @@ export default function EditorScreen({ route, navigation }) {
           setTitle(res.data.note.title || '');
           setBody(res.data.note.body || '');
         } else {
-          Alert.alert('Error', 'Could not load note');
+          showAlert('Error', 'Could not load note');
           navigation.goBack();
         }
         setLoading(false);
@@ -32,7 +33,7 @@ export default function EditorScreen({ route, navigation }) {
 
   const handleSave = async () => {
     if (!title.trim()) {
-      Alert.alert('Error', 'Title is required');
+      showAlert('Error', 'Title is required');
       return;
     }
     setSaving(true);
@@ -40,12 +41,12 @@ export default function EditorScreen({ route, navigation }) {
       const res = await authFetch(api.createNote, title.trim(), body, folderId);
       setSaving(false);
       if (res.data.status === 'SUCCESS') navigation.goBack();
-      else Alert.alert('Error', res.data.msg || 'Failed to create note');
+      else showAlert('Error', res.data.msg || 'Failed to create note');
     } else {
       const res = await authFetch(api.editNote, noteId, { title: title.trim(), body });
       setSaving(false);
       if (res.data.status === 'SUCCESS') navigation.goBack();
-      else Alert.alert('Error', res.data.msg || 'Failed to save note');
+      else showAlert('Error', res.data.msg || 'Failed to save note');
     }
   };
 

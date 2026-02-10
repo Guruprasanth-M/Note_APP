@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import {
   View, Text, TextInput, TouchableOpacity,
-  StyleSheet, KeyboardAvoidingView, Platform, Alert, ActivityIndicator,
+  StyleSheet, KeyboardAvoidingView, Platform, ActivityIndicator,
   ScrollView,
 } from 'react-native';
 import { useAuth } from '../AuthContext';
+import { showAlert, showConfirm } from '../alertHelper';
 
 export default function SignupScreen({ navigation }) {
   const { signUp } = useAuth();
@@ -17,20 +18,20 @@ export default function SignupScreen({ navigation }) {
 
   const handleSignup = async () => {
     if (!username.trim() || !email.trim() || !phone.trim() || !password.trim()) {
-      Alert.alert('Error', 'All fields are required');
+      showAlert('Error', 'All fields are required');
       return;
     }
     setLoading(true);
     const result = await signUp(username.trim(), password, email.trim(), phone.trim());
     setLoading(false);
     if (result.success) {
-      Alert.alert(
+      showConfirm(
         'Account Created',
         result.msg || 'Check your email to verify, then login.',
-        [{ text: 'GO TO LOGIN', onPress: () => navigation.navigate('Login') }]
+        () => navigation.navigate('Login')
       );
     } else {
-      Alert.alert('Signup Failed', result.error);
+      showAlert('Signup Failed', result.error);
     }
   };
 
