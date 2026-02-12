@@ -1,7 +1,20 @@
-// API Service — handles all communication with https://api.selfmade.express
+// API Service — handles all communication with the backend API
 // Refer: https://github.com/Guruprasanth-M/API-dev/wiki
 
-const API_BASE = 'https://api.selfmade.express';
+let API_BASE;
+
+try {
+  // Try webpack env (web)
+  if (typeof process !== 'undefined' && process.env.API_BASE) {
+    API_BASE = process.env.API_BASE;
+  } else {
+    // Try react-native-dotenv (native)
+    API_BASE = require('@env').API_BASE;
+  }
+} catch (e) {
+  // Fallback to default
+  API_BASE = 'https://api.selfmade.express';
+}
 
 /**
  * Send a POST request to the API

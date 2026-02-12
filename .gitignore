@@ -7,4 +7,6 @@ dist/
 *.key
 *.mobileprovision
 *.orig.*
-web-build/
+.env
+.env.local
+web-build/.env
