@@ -36,10 +36,8 @@ Features a stunning dark OLED theme with yellow accents. Uses the [Self-Hosted P
 ---
 
 ## 📱 Screenshots
+<img width="1920" height="1080" alt="Screen shot" src="https://github.com/user-attachments/assets/1cc7a42f-86b7-4273-9b2c-5d02a9ce88aa" />
 
-| Folders | Notes | Editor |
-|---------|-------|--------|
-| ![Folders](./screenshots/folders.png) | ![Notes](./screenshots/notes.png) | ![Editor](./screenshots/editor.png) |
 
 ---
 
