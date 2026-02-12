@@ -125,13 +125,9 @@ Install via TestFlight.
 
 ---
 
-## Change API URL
+## Configuration
 
-Edit `src/api.js` line 4:
-
-```js
-const API_BASE = 'https://api.selfmade.express';  // change to your API
-```
+Copy `.env.sample` to `.env` and configure your API backend URL.
 
 ---
 
