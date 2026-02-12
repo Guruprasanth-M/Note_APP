@@ -56,8 +56,10 @@ export default function NotesScreen({ route, navigation }) {
   const timeAgo = (dateStr) => {
     if (!dateStr) return 'no date';
     
-    // Parse date - ensure proper timezone handling
-    const date = new Date(dateStr);
+    // API returns timestamps in Asia/Kolkata (IST = UTC+5:30)
+    // Append timezone offset so JS Date parses it correctly
+    const isoStr = dateStr.replace(' ', 'T') + '+05:30';
+    const date = new Date(isoStr);
     
     // Check if date is valid
     if (isNaN(date.getTime())) {
@@ -67,6 +69,7 @@ export default function NotesScreen({ route, navigation }) {
     const diff = Date.now() - date.getTime();
     const mins = Math.floor(diff / (1000 * 60));
     
+    if (mins < 0) return 'just now';
     if (mins < 1) return 'just now';
     if (mins < 60) return `${mins}m ago`;
     
