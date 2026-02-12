@@ -9,5 +9,4 @@ dist/
 *.orig.*
 web-build/
 .env
-.env.local.env.production
-.env*
+.env.local
