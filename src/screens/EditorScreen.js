@@ -7,6 +7,7 @@ import { showAlert } from '../alertHelper';
 import { useAuth } from '../AuthContext';
 import * as api from '../api';
 import { editorStyles as styles, ACCENT } from '../styles/editorScreen.styles';
+import { COLORS } from '../styles/common.styles';
 
 export default function EditorScreen({ route, navigation }) {
   const { noteId, folderId, isNew } = route.params;
@@ -66,9 +67,9 @@ export default function EditorScreen({ route, navigation }) {
     >
       {/* Minimal top bar */}
       <View style={styles.topBar}>
-        <Text style={styles.topBarLabel}>{isNew ? 'NEW NOTE' : 'EDITING'}</Text>
+        <Text style={styles.topBarLabel}>{isNew ? 'New Note' : 'Editing'}</Text>
         <View style={styles.charCount}>
-          <Text style={styles.charCountText}>{body.length}</Text>
+          <Text style={styles.charCountText}>{body.length} chars</Text>
         </View>
       </View>
 
@@ -76,7 +77,7 @@ export default function EditorScreen({ route, navigation }) {
         <TextInput
           style={styles.titleInput}
           placeholder="Title"
-          placeholderTextColor="#333"
+          placeholderTextColor={COLORS.TEXT_MUTED}
           value={title}
           onChangeText={setTitle}
           autoFocus={isNew}
@@ -86,7 +87,7 @@ export default function EditorScreen({ route, navigation }) {
         <TextInput
           style={styles.bodyInput}
           placeholder="Start writing..."
-          placeholderTextColor="#222"
+          placeholderTextColor={COLORS.TEXT_QUATERNARY}
           value={body}
           onChangeText={setBody}
           multiline
@@ -101,7 +102,7 @@ export default function EditorScreen({ route, navigation }) {
           onPress={() => navigation.goBack()}
           activeOpacity={0.7}
         >
-          <Text style={styles.cancelText}>← BACK</Text>
+          <Text style={styles.cancelText}>Cancel</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.saveButton, saving && styles.buttonDisabled]}
@@ -110,9 +111,9 @@ export default function EditorScreen({ route, navigation }) {
           activeOpacity={0.8}
         >
           {saving ? (
-            <ActivityIndicator color="#000" size="small" />
+            <ActivityIndicator color="#FFF" size="small" />
           ) : (
-            <Text style={styles.saveText}>{isNew ? 'CREATE' : 'SAVE'}</Text>
+            <Text style={styles.saveText}>{isNew ? 'Create' : 'Save'}</Text>
           )}
         </TouchableOpacity>
       </View>

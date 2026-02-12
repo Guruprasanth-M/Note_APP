@@ -1,144 +1,344 @@
-import { StyleSheet } from 'react-native';
-import { ACCENT, commonStyles } from './common.styles';
+import { StyleSheet, Platform } from 'react-native';
+import { COLORS, TYPOGRAPHY, SPACING, RADIUS, SHADOWS, FOLDER_COLORS } from './common.styles';
 
 export const foldersStyles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: commonStyles.BG_PRIMARY },
+  // Main container
+  container: { 
+    flex: 1, 
+    backgroundColor: COLORS.BG_PRIMARY,
+  },
   center: { justifyContent: 'center', alignItems: 'center' },
+  
+  // Safe area header
+  headerSafeArea: {
+    backgroundColor: COLORS.BG_PRIMARY,
+    paddingTop: Platform.OS === 'ios' ? 50 : 40,
+  },
+  
+  // Header with large title (Apple Notes style)
   header: {
+    paddingHorizontal: SPACING.lg,
+    paddingBottom: SPACING.md,
+  },
+  headerRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    paddingHorizontal: 20,
-    paddingTop: 60,
-    paddingBottom: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: commonStyles.BORDER_COLOR,
+    alignItems: 'center',
+    marginBottom: SPACING.xs,
   },
-  greeting: { fontSize: 12, color: commonStyles.TEXT_TERTIARY, letterSpacing: 1, fontWeight: '500', textTransform: 'uppercase' },
   headerTitle: {
-    fontSize: 32,
-    fontWeight: '800',
-    color: commonStyles.TEXT_PRIMARY,
-    marginTop: 6,
-    letterSpacing: 2,
+    ...TYPOGRAPHY.largeTitle,
+    color: COLORS.TEXT_PRIMARY,
   },
-  logoutBtn: {
-    borderWidth: 1.5,
-    borderColor: '#EF4444',
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: 8,
+  
+  // Edit/Logout button
+  headerButton: {
+    paddingVertical: SPACING.sm,
+    paddingHorizontal: SPACING.md,
   },
-  logoutText: { color: '#EF4444', fontWeight: '700', fontSize: 12, letterSpacing: 1, textTransform: 'uppercase' },
-  statsBar: {
-    flexDirection: 'row',
-    marginHorizontal: 20,
-    marginTop: 16,
-    marginBottom: 24,
-    paddingVertical: 16,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: commonStyles.BORDER_COLOR,
+  headerButtonText: {
+    ...TYPOGRAPHY.body,
+    color: COLORS.BLUE,
   },
-  stat: { flex: 1, alignItems: 'center' },
-  statNum: { fontSize: 24, fontWeight: '800', color: ACCENT },
-  statLabel: { fontSize: 11, color: commonStyles.TEXT_TERTIARY, letterSpacing: 1.5, marginTop: 4, fontWeight: '600', textTransform: 'uppercase' },
-  statDivider: { width: 1, backgroundColor: commonStyles.BORDER_COLOR },
-  list: { paddingHorizontal: 20, paddingBottom: 100 },
-  folderCard: {
+  
+  // Search bar (Apple style)
+  searchContainer: {
+    paddingHorizontal: SPACING.lg,
+    paddingBottom: SPACING.md,
+  },
+  searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: commonStyles.BG_SECONDARY,
-    padding: 16,
-    marginBottom: 12,
-    borderWidth: 1,
-    borderColor: commonStyles.BORDER_COLOR,
-    borderRadius: 12,
+    backgroundColor: COLORS.BG_TERTIARY,
+    borderRadius: RADIUS.sm,
+    paddingHorizontal: SPACING.md,
+    paddingVertical: Platform.OS === 'ios' ? SPACING.sm : SPACING.xs,
   },
-  folderLeft: { flexDirection: 'row', alignItems: 'center', flex: 1 },
-  folderDot: {
-    width: 12,
-    height: 12,
-    borderRadius: 6,
-    marginRight: 14,
-    backgroundColor: ACCENT,
+  searchIcon: {
+    fontSize: 16,
+    color: COLORS.TEXT_TERTIARY,
+    marginRight: SPACING.sm,
   },
-  folderName: { fontSize: 16, fontWeight: '700', color: commonStyles.TEXT_PRIMARY },
-  folderCount: { fontSize: 12, color: commonStyles.TEXT_TERTIARY, marginTop: 3, fontWeight: '500' },
-  arrow: { fontSize: 18, color: commonStyles.TEXT_MUTED },
-  emptyContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 30 },
-  empty: { alignItems: 'center' },
-  emptyIcon: { fontSize: 48, color: commonStyles.TEXT_MUTED, fontWeight: '200', marginBottom: 16 },
-  emptyText: { fontSize: 18, color: commonStyles.TEXT_PRIMARY, fontWeight: '700', letterSpacing: 0.5 },
-  emptySubtext: { fontSize: 13, color: commonStyles.TEXT_TERTIARY, marginTop: 10, letterSpacing: 0.3, textAlign: 'center' },
-  fab: {
-    position: 'absolute',
-    bottom: 32,
-    right: 24,
-    width: 60,
-    height: 60,
-    backgroundColor: ACCENT,
+  searchInput: {
+    flex: 1,
+    ...TYPOGRAPHY.body,
+    color: COLORS.TEXT_PRIMARY,
+    paddingVertical: SPACING.xs,
+  },
+  searchClear: {
+    padding: SPACING.xs,
+  },
+  searchClearIcon: {
+    fontSize: 16,
+    color: COLORS.TEXT_TERTIARY,
+  },
+  
+  // Account info bar
+  accountBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: SPACING.lg,
+    paddingVertical: SPACING.md,
+  },
+  accountIcon: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: COLORS.BG_TERTIARY,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 30,
-    shadowColor: ACCENT,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.4,
-    shadowRadius: 8,
-    elevation: 8,
+    marginRight: SPACING.md,
   },
-  fabText: { fontSize: 26, color: '#FFF', fontWeight: '600', lineHeight: 30 },
+  accountIconText: {
+    ...TYPOGRAPHY.headline,
+    color: COLORS.TEXT_PRIMARY,
+  },
+  accountInfo: {
+    flex: 1,
+  },
+  accountName: {
+    ...TYPOGRAPHY.headline,
+    color: COLORS.TEXT_PRIMARY,
+  },
+  accountEmail: {
+    ...TYPOGRAPHY.footnote,
+    color: COLORS.TEXT_SECONDARY,
+    marginTop: 2,
+  },
+  logoutBtn: {
+    paddingVertical: SPACING.sm,
+    paddingHorizontal: SPACING.md,
+  },
+  logoutText: {
+    ...TYPOGRAPHY.body,
+    color: COLORS.RED,
+  },
+  
+  // Folder list
+  list: { 
+    flex: 1,
+  },
+  listContent: {
+    paddingBottom: 100,
+  },
+  
+  // Section header
+  sectionHeader: {
+    paddingHorizontal: SPACING.lg,
+    paddingVertical: SPACING.sm,
+    backgroundColor: COLORS.BG_PRIMARY,
+  },
+  sectionTitle: {
+    ...TYPOGRAPHY.footnote,
+    color: COLORS.TEXT_SECONDARY,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+  },
+  
+  // Apple Notes style folder row
+  folderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: SPACING.md,
+    paddingHorizontal: SPACING.lg,
+    backgroundColor: COLORS.BG_ELEVATED,
+  },
+  folderRowFirst: {
+    borderTopLeftRadius: RADIUS.sm,
+    borderTopRightRadius: RADIUS.sm,
+  },
+  folderRowLast: {
+    borderBottomLeftRadius: RADIUS.sm,
+    borderBottomRightRadius: RADIUS.sm,
+  },
+  folderSeparator: {
+    height: 0.5,
+    backgroundColor: COLORS.SEPARATOR,
+    marginLeft: 60,
+  },
+  
+  // Folder icon (yellow folder like Apple Notes)
+  folderIcon: {
+    width: 32,
+    height: 32,
+    borderRadius: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: SPACING.md,
+  },
+  folderIconText: {
+    fontSize: 18,
+  },
+  
+  // Folder info
+  folderInfo: {
+    flex: 1,
+  },
+  folderName: {
+    ...TYPOGRAPHY.body,
+    color: COLORS.TEXT_PRIMARY,
+  },
+  folderMeta: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 2,
+  },
+  folderCount: {
+    ...TYPOGRAPHY.footnote,
+    color: COLORS.TEXT_SECONDARY,
+  },
+  
+  // Chevron
+  chevron: {
+    fontSize: 18,
+    color: COLORS.TEXT_TERTIARY,
+  },
+  
+  // Swipe delete action
+  deleteAction: {
+    backgroundColor: COLORS.RED,
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    paddingHorizontal: SPACING.xl,
+  },
+  deleteActionText: {
+    ...TYPOGRAPHY.body,
+    color: '#FFF',
+    fontWeight: '500',
+  },
+  
+  // Empty state
+  emptyContainer: { 
+    flex: 1, 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    paddingHorizontal: SPACING.xxxl,
+  },
+  emptyIcon: { 
+    fontSize: 64,
+    marginBottom: SPACING.lg,
+  },
+  emptyText: { 
+    ...TYPOGRAPHY.title3,
+    color: COLORS.TEXT_PRIMARY, 
+    textAlign: 'center',
+    marginBottom: SPACING.sm,
+  },
+  emptySubtext: { 
+    ...TYPOGRAPHY.subheadline,
+    color: COLORS.TEXT_SECONDARY, 
+    textAlign: 'center',
+    lineHeight: 22,
+  },
+  
+  // FAB (Apple Notes style - bottom right compose)
+  fab: {
+    position: 'absolute',
+    bottom: 30,
+    right: 20,
+    width: 56,
+    height: 56,
+    backgroundColor: COLORS.YELLOW,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 28,
+    ...SHADOWS.medium,
+  },
+  fabText: { 
+    fontSize: 24, 
+    color: '#000',
+    fontWeight: '400',
+  },
+  
   // Modal
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.9)',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     justifyContent: 'center',
-    paddingHorizontal: 24,
+    paddingHorizontal: SPACING.xxl,
   },
   modalContent: {
-    backgroundColor: commonStyles.BG_SECONDARY,
-    padding: 24,
-    borderWidth: 1,
-    borderColor: commonStyles.BORDER_COLOR,
-    borderRadius: 14,
+    backgroundColor: COLORS.BG_ELEVATED,
+    borderRadius: RADIUS.md,
+    overflow: 'hidden',
+  },
+  modalHeader: {
+    paddingVertical: SPACING.lg,
+    paddingHorizontal: SPACING.xl,
+    borderBottomWidth: 0.5,
+    borderBottomColor: COLORS.SEPARATOR,
+    alignItems: 'center',
   },
   modalTitle: {
-    fontSize: 14,
-    fontWeight: '800',
-    color: commonStyles.TEXT_PRIMARY,
-    letterSpacing: 2,
-    marginBottom: 20,
-    textTransform: 'uppercase',
+    ...TYPOGRAPHY.headline,
+    color: COLORS.TEXT_PRIMARY,
+  },
+  modalBody: {
+    padding: SPACING.xl,
   },
   modalInput: {
-    backgroundColor: commonStyles.BG_PRIMARY,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    fontSize: 16,
-    color: commonStyles.TEXT_PRIMARY,
-    borderWidth: 1.5,
-    borderColor: commonStyles.BORDER_COLOR,
-    marginBottom: 24,
-    fontWeight: '500',
-    borderRadius: 10,
+    backgroundColor: COLORS.BG_TERTIARY,
+    paddingHorizontal: SPACING.lg,
+    paddingVertical: SPACING.md,
+    ...TYPOGRAPHY.body,
+    color: COLORS.TEXT_PRIMARY,
+    borderRadius: RADIUS.sm,
   },
-  modalActions: { flexDirection: 'row', justifyContent: 'flex-end', gap: 10 },
-  modalCancel: { paddingVertical: 12, paddingHorizontal: 18 },
-  modalCancelText: { color: commonStyles.TEXT_TERTIARY, fontSize: 13, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' },
-  modalCreate: {
-    backgroundColor: ACCENT,
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 10,
-    shadowColor: ACCENT,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 6,
-    elevation: 4,
+  modalActions: {
+    flexDirection: 'row',
+    borderTopWidth: 0.5,
+    borderTopColor: COLORS.SEPARATOR,
   },
-  modalCreateText: { color: '#FFF', fontSize: 13, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' },
-  buttonDisabled: { opacity: 0.6 },
+  modalButton: {
+    flex: 1,
+    paddingVertical: SPACING.lg,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modalButtonDivider: {
+    width: 0.5,
+    backgroundColor: COLORS.SEPARATOR,
+  },
+  modalCancelText: {
+    ...TYPOGRAPHY.body,
+    color: COLORS.BLUE,
+  },
+  modalCreateText: {
+    ...TYPOGRAPHY.body,
+    color: COLORS.BLUE,
+    fontWeight: '600',
+  },
+  buttonDisabled: { opacity: 0.4 },
+  
+  // Stats row
+  statsRow: {
+    flexDirection: 'row',
+    paddingHorizontal: SPACING.lg,
+    paddingVertical: SPACING.lg,
+    marginHorizontal: SPACING.lg,
+    marginBottom: SPACING.md,
+    backgroundColor: COLORS.BG_ELEVATED,
+    borderRadius: RADIUS.sm,
+  },
+  statItem: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  statDivider: {
+    width: 0.5,
+    backgroundColor: COLORS.SEPARATOR,
+    marginVertical: SPACING.xs,
+  },
+  statNumber: {
+    ...TYPOGRAPHY.title2,
+    color: COLORS.YELLOW,
+  },
+  statLabel: {
+    ...TYPOGRAPHY.caption1,
+    color: COLORS.TEXT_SECONDARY,
+    marginTop: SPACING.xs,
+  },
 });
 
-export { ACCENT };
+export const ACCENT = COLORS.YELLOW;
+export { FOLDER_COLORS };

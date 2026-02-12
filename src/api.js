@@ -57,6 +57,31 @@ export async function resetPassword(token, password) {
   return post('resetpassword', { token, password });
 }
 
+/** POST /verify — Verify email with token */
+export async function verifyEmail(token) {
+  return post('verify', { token });
+}
+
+/** POST /resendverification — Resend verification email */
+export async function resendVerification(email) {
+  return post('resendverification', { email });
+}
+
+/** POST /userexists — Check if username/email exists */
+export async function userExists(username, email) {
+  return post('userexists', { username, email });
+}
+
+/** POST /about — Get user profile info */
+export async function about(token) {
+  return post('about', {}, token);
+}
+
+/** POST /isloggedin — Check login status */
+export async function isLoggedIn(token) {
+  return post('isloggedin', {}, token);
+}
+
 /** POST /logout — Terminate current session */
 export async function logout(token) {
   return post('logout', {}, token);

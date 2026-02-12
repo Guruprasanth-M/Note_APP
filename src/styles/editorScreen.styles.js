@@ -1,81 +1,93 @@
 import { StyleSheet, Platform } from 'react-native';
-import { ACCENT, commonStyles } from './common.styles';
+import { COLORS, TYPOGRAPHY, SPACING, RADIUS, SHADOWS } from './common.styles';
 
 export const editorStyles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: commonStyles.BG_PRIMARY },
+  container: { 
+    flex: 1, 
+    backgroundColor: COLORS.BG_PRIMARY,
+  },
   center: { justifyContent: 'center', alignItems: 'center' },
+  
+  // Top bar with folder name and character count
   topBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingTop: 12,
-    paddingBottom: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: commonStyles.BORDER_COLOR,
+    paddingHorizontal: SPACING.xl,
+    paddingTop: SPACING.md,
+    paddingBottom: SPACING.md,
+    borderBottomWidth: 0.5,
+    borderBottomColor: COLORS.SEPARATOR,
   },
   topBarLabel: {
-    fontSize: 12,
-    color: ACCENT,
-    fontWeight: '700',
-    letterSpacing: 1.5,
-    textTransform: 'uppercase',
+    ...TYPOGRAPHY.footnote,
+    color: COLORS.YELLOW,
+    fontWeight: '500',
   },
   charCount: {
-    backgroundColor: commonStyles.BG_SECONDARY,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: commonStyles.BORDER_COLOR,
+    backgroundColor: COLORS.BG_ELEVATED,
+    paddingHorizontal: SPACING.md,
+    paddingVertical: SPACING.xs,
+    borderRadius: RADIUS.xs,
   },
   charCountText: {
-    fontSize: 11,
-    color: commonStyles.TEXT_TERTIARY,
-    fontWeight: '700',
+    ...TYPOGRAPHY.caption2,
+    color: COLORS.TEXT_SECONDARY,
     fontFamily: Platform.OS === 'ios' ? 'Menlo' : 'monospace',
   },
-  scroll: { flex: 1, paddingHorizontal: 20, paddingTop: 20 },
+  
+  // Editor content area
+  scroll: { 
+    flex: 1, 
+    paddingHorizontal: SPACING.xl, 
+    paddingTop: SPACING.lg,
+  },
   titleInput: {
-    fontSize: 28,
-    fontWeight: '800',
-    color: commonStyles.TEXT_PRIMARY,
-    paddingVertical: 8,
-    marginBottom: 20,
+    ...TYPOGRAPHY.title1,
+    color: COLORS.TEXT_PRIMARY,
+    paddingVertical: SPACING.sm,
+    marginBottom: SPACING.md,
   },
   bodyInput: {
-    fontSize: 16,
-    color: commonStyles.TEXT_SECONDARY,
-    lineHeight: 28,
+    ...TYPOGRAPHY.body,
+    color: COLORS.TEXT_SECONDARY,
+    lineHeight: 26,
     minHeight: 300,
-    fontWeight: '400',
   },
+  
+  // Footer with actions
   footer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 16,
-    paddingBottom: 30,
-    borderTopWidth: 1,
-    borderTopColor: commonStyles.BORDER_COLOR,
-    backgroundColor: commonStyles.BG_SECONDARY,
+    paddingHorizontal: SPACING.xl,
+    paddingVertical: SPACING.md,
+    paddingBottom: Platform.OS === 'ios' ? 34 : SPACING.xl,
+    borderTopWidth: 0.5,
+    borderTopColor: COLORS.SEPARATOR,
+    backgroundColor: COLORS.BG_ELEVATED,
   },
-  cancelBtn: { paddingVertical: 12, paddingHorizontal: 4 },
-  cancelText: { color: commonStyles.TEXT_TERTIARY, fontSize: 13, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' },
+  cancelBtn: { 
+    paddingVertical: SPACING.md, 
+    paddingHorizontal: SPACING.sm,
+  },
+  cancelText: { 
+    ...TYPOGRAPHY.body,
+    color: COLORS.BLUE,
+  },
   saveButton: {
-    backgroundColor: ACCENT,
-    paddingVertical: 12,
-    paddingHorizontal: 28,
-    borderRadius: 10,
-    shadowColor: ACCENT,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 6,
+    backgroundColor: COLORS.YELLOW,
+    paddingVertical: SPACING.md,
+    paddingHorizontal: SPACING.xxl,
+    borderRadius: RADIUS.sm,
+    ...SHADOWS.small,
   },
-  buttonDisabled: { opacity: 0.6 },
-  saveText: { color: '#FFF', fontSize: 14, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' },
+  buttonDisabled: { opacity: 0.4 },
+  saveText: { 
+    color: '#000',
+    ...TYPOGRAPHY.callout,
+    fontWeight: '600',
+  },
 });
 
-export { ACCENT };
+export const ACCENT = COLORS.YELLOW;

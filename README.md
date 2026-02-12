@@ -1,44 +1,80 @@
-# Notes App — React Native (Expo)
+# 📝 Notes App — React Native (Expo)
 
-A notes-taking mobile app built with React Native + Expo.  
-Pure black OLED theme. Uses the [Self-Hosted PHP REST API](https://github.com/Guruprasanth-M/API-dev) for auth and data.
+A beautiful Apple Notes-inspired mobile app built with React Native + Expo.  
+Features a stunning dark OLED theme with yellow accents. Uses the [Self-Hosted PHP REST API](https://github.com/Guruprasanth-M/API-dev) for authentication and data.
+
+> **Version:** `1.0.1`  
+> **Platform:** Android (iOS ready)  
+> **Backend:** [API-dev](https://github.com/Guruprasanth-M/API-dev)
 
 ---
 
-## Features
+## ✨ Features (v1)
 
-- Signup & Login (email verification)
-- Folders — create, list, delete
-- Notes — create, edit, delete inside folders
+### Authentication
+- User signup with email verification
+- Login with username/email
+- Password reset flow
 - Auto token refresh (OAuth-style)
+- Secure session management
+
+### Notes Management
+- Create, organize, and manage folders
+- Create, edit, and delete notes
+- Search notes and folders
 - Pull to refresh
+- Haptic feedback
+
+### UI/UX
+- Apple Notes-inspired design
 - Pure black OLED theme
+- Yellow accent colors
+- iOS-style navigation
+- Empty states with illustrations
+- Profile screen with stats
 
 ---
 
-## Project Structure
+## 📱 Screenshots
+
+| Folders | Notes | Editor |
+|---------|-------|--------|
+| ![Folders](./screenshots/folders.png) | ![Notes](./screenshots/notes.png) | ![Editor](./screenshots/editor.png) |
+
+---
+
+## 🗂️ Project Structure
 
 ```
 notes-app/
 ├── App.js                    # Root — navigation + auth
 ├── src/
 │   ├── api.js                # All API calls
-│   ├── AuthContext.js         # Auth state + token refresh
-│   └── screens/
-│       ├── LoginScreen.js
-│       ├── SignupScreen.js
-│       ├── FoldersScreen.js
-│       ├── NotesScreen.js
-│       └── EditorScreen.js
+│   ├── AuthContext.js        # Auth state + token refresh
+│   ├── alertHelper.js        # Cross-platform alerts
+│   ├── screens/
+│   │   ├── LoginScreen.js
+│   │   ├── SignupScreen.js
+│   │   ├── VerifyScreen.js
+│   │   ├── ResetScreen.js
+│   │   ├── FoldersScreen.js
+│   │   ├── NotesScreen.js
+│   │   ├── EditorScreen.js
+│   │   └── ProfileScreen.js
+│   └── styles/
+│       ├── common.styles.js      # Design system
+│       ├── authScreens.styles.js
+│       ├── foldersScreen.styles.js
+│       ├── notesScreen.styles.js
+│       └── editorScreen.styles.js
 ├── app.json                  # Expo config
 ├── eas.json                  # Build config (APK)
-├── babel.config.js
 └── package.json
 ```
 
 ---
 
-## Run on Phone (Development)
+## 🚀 Run on Phone (Development)
 
 ### What you need
 - Node.js v18+ installed on your computer
@@ -131,6 +167,49 @@ Copy `.env.sample` to `.env` and configure your API backend URL.
 
 ---
 
-## Author
+## 🗺️ Roadmap
 
-**Guruprasanth M**
+### v2 — Enhanced Features (Coming Soon)
+- [ ] **Profile Management** — Edit username, email, password
+- [ ] **Voice Notes** — Record and attach audio to notes
+- [ ] **Note Sharing** — Share notes with other users
+- [ ] **AI Integration** — Smart suggestions, auto-formatting, summarization
+- [ ] **Rich Text Editor** — Bold, italic, lists, checkboxes
+- [ ] **Note Attachments** — Images and file attachments
+- [ ] **Tags & Labels** — Organize notes with tags
+- [ ] **Dark/Light Theme Toggle**
+- [ ] **Offline Mode** — Create notes without internet, sync later
+- [ ] **Backend Migration** — Node.js/Python (FastAPI) for better performance
+
+### v3 — Community Platform (Future)
+- [ ] **Public Notes** — Share notes publicly
+- [ ] **User Profiles** — Follow other users
+- [ ] **Collaborative Editing** — Real-time collaboration
+- [ ] **Comments & Reactions**
+- [ ] **Note Templates**
+- [ ] **API Rate Limiting & Analytics**
+- [ ] **Admin Dashboard**
+
+---
+
+## 🔗 Other Projects
+
+Check out my other projects:
+
+| Project | Description | Link |
+|---------|-------------|------|
+| **API-dev** | Self-hosted PHP REST API for authentication | [GitHub](https://github.com/Guruprasanth-M/API-dev) |
+| **Notes App** | This React Native app | [GitHub](https://github.com/Guruprasanth-M/Note_APP) |
+
+---
+
+## 👨‍💻 Author
+
+**Guruprasanth M**  
+Building real systems, learning by doing.
+
+---
+
+## 📄 License
+
+MIT License — feel free to use, modify, and distribute.

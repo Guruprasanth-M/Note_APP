@@ -1,75 +1,171 @@
 import { StyleSheet, Platform } from 'react-native';
-import { ACCENT, commonStyles } from './common.styles';
+import { COLORS, TYPOGRAPHY, SPACING, RADIUS, SHADOWS } from './common.styles';
 
 export const notesStyles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: commonStyles.BG_PRIMARY },
+  container: { 
+    flex: 1, 
+    backgroundColor: COLORS.BG_PRIMARY,
+  },
   center: { justifyContent: 'center', alignItems: 'center' },
-  list: { paddingHorizontal: 20, paddingBottom: 100, paddingTop: 12 },
+  
+  // Search bar
+  searchContainer: {
+    paddingHorizontal: SPACING.lg,
+    paddingVertical: SPACING.sm,
+    backgroundColor: COLORS.BG_PRIMARY,
+  },
+  searchBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: COLORS.BG_TERTIARY,
+    borderRadius: RADIUS.sm,
+    paddingHorizontal: SPACING.md,
+    paddingVertical: Platform.OS === 'ios' ? SPACING.sm : SPACING.xs,
+  },
+  searchIcon: {
+    fontSize: 14,
+    color: COLORS.TEXT_TERTIARY,
+    marginRight: SPACING.sm,
+  },
+  searchInput: {
+    flex: 1,
+    ...TYPOGRAPHY.body,
+    color: COLORS.TEXT_PRIMARY,
+    paddingVertical: SPACING.xs,
+  },
+  
+  // List
+  list: { 
+    paddingHorizontal: SPACING.lg, 
+    paddingBottom: 120,
+  },
+  
+  // Section header
   listHeader: {
     flexDirection: 'row',
     alignItems: 'baseline',
-    marginBottom: 24,
-    paddingHorizontal: 4,
+    marginBottom: SPACING.lg,
+    marginTop: SPACING.sm,
   },
-  listHeaderCount: { fontSize: 32, fontWeight: '800', color: ACCENT, marginRight: 10 },
-  listHeaderLabel: { fontSize: 12, fontWeight: '700', color: commonStyles.TEXT_TERTIARY, letterSpacing: 1.5, textTransform: 'uppercase' },
+  listHeaderCount: { 
+    ...TYPOGRAPHY.title1,
+    color: COLORS.YELLOW, 
+    marginRight: SPACING.sm,
+  },
+  listHeaderLabel: { 
+    ...TYPOGRAPHY.footnote,
+    color: COLORS.TEXT_SECONDARY, 
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+  },
+  
+  // Note card - Apple Notes style
   noteCard: {
-    backgroundColor: commonStyles.BG_SECONDARY,
-    padding: 18,
-    marginBottom: 12,
-    borderWidth: 1,
-    borderColor: commonStyles.BORDER_COLOR,
-    borderRadius: 12,
+    backgroundColor: COLORS.BG_ELEVATED,
+    paddingVertical: SPACING.md,
+    paddingHorizontal: SPACING.lg,
+    marginBottom: 1,
+    borderRadius: RADIUS.sm,
+    marginBottom: SPACING.sm,
   },
   noteHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: SPACING.sm,
   },
   noteNum: {
-    backgroundColor: commonStyles.BG_TERTIARY,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 6,
+    backgroundColor: COLORS.BG_TERTIARY,
+    paddingHorizontal: SPACING.sm,
+    paddingVertical: SPACING.xs,
+    borderRadius: RADIUS.xs,
   },
-  noteNumText: { fontSize: 11, color: commonStyles.TEXT_TERTIARY, fontWeight: '700', fontFamily: Platform.OS === 'ios' ? 'Menlo' : 'monospace' },
-  noteTime: { fontSize: 11, color: commonStyles.TEXT_MUTED, fontWeight: '500' },
+  noteNumText: { 
+    ...TYPOGRAPHY.caption2,
+    color: COLORS.TEXT_SECONDARY, 
+    fontFamily: Platform.OS === 'ios' ? 'Menlo' : 'monospace',
+    fontWeight: '500',
+  },
+  noteTime: { 
+    ...TYPOGRAPHY.caption1,
+    color: COLORS.TEXT_SECONDARY,
+  },
   noteTitle: {
-    fontSize: 17,
-    fontWeight: '700',
-    color: commonStyles.TEXT_PRIMARY,
-    marginBottom: 8,
+    ...TYPOGRAPHY.headline,
+    color: COLORS.TEXT_PRIMARY,
+    marginBottom: SPACING.xs,
   },
   noteBody: {
-    fontSize: 14,
-    color: commonStyles.TEXT_SECONDARY,
+    ...TYPOGRAPHY.subheadline,
+    color: COLORS.TEXT_SECONDARY,
+    lineHeight: 20,
+  },
+  
+  // Empty state
+  emptyContainer: { 
+    flex: 1, 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    paddingHorizontal: SPACING.xxxl,
+  },
+  empty: { alignItems: 'center' },
+  emptyLine: { 
+    fontSize: 64,
+    marginBottom: SPACING.lg,
+  },
+  emptyText: { 
+    ...TYPOGRAPHY.title3,
+    color: COLORS.TEXT_PRIMARY, 
+    textAlign: 'center',
+    marginBottom: SPACING.sm,
+  },
+  emptySubtext: { 
+    ...TYPOGRAPHY.subheadline,
+    color: COLORS.TEXT_SECONDARY, 
+    textAlign: 'center',
     lineHeight: 22,
   },
-  emptyContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 30 },
-  empty: { alignItems: 'center' },
-  emptyLine: { fontSize: 48, color: commonStyles.TEXT_MUTED, fontWeight: '200', marginBottom: 16 },
-  emptyText: { fontSize: 18, color: commonStyles.TEXT_PRIMARY, fontWeight: '700', letterSpacing: 0.5, marginBottom: 8, textAlign: 'center' },
-  emptySubtext: { fontSize: 13, color: commonStyles.TEXT_TERTIARY, marginTop: 8, letterSpacing: 0.3, textAlign: 'center' },
+  
+  // FAB
   fab: {
     position: 'absolute',
-    bottom: 32,
-    right: 24,
-    width: 60,
-    height: 60,
-    backgroundColor: ACCENT,
+    bottom: 30,
+    right: 20,
+    width: 56,
+    height: 56,
+    backgroundColor: COLORS.YELLOW,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 30,
-    shadowColor: ACCENT,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.4,
-    shadowRadius: 8,
-    elevation: 8,
+    borderRadius: 28,
+    ...SHADOWS.medium,
   },
-  fabText: { fontSize: 26, color: '#FFF', fontWeight: '600', lineHeight: 30 },
+  fabText: { 
+    fontSize: 24, 
+    color: '#000',
+    fontWeight: '400',
+  },
+  
+  // Swipe delete action
+  deleteAction: {
+    backgroundColor: COLORS.RED,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 80,
+    height: '100%',
+    borderRadius: RADIUS.sm,
+    marginBottom: SPACING.sm,
+  },
+  deleteActionText: {
+    fontSize: 22,
+    marginBottom: SPACING.xs,
+  },
+  deleteActionLabel: {
+    ...TYPOGRAPHY.caption1,
+    color: '#fff',
+    fontWeight: '600',
+  },
 });
 
-export { ACCENT };
+export const ACCENT = COLORS.YELLOW;
 
 

@@ -6,6 +6,7 @@ import {
 import { useAuth } from '../AuthContext';
 import { showAlert } from '../alertHelper';
 import { authStyles as styles } from '../styles/authScreens.styles';
+import { COLORS } from '../styles/common.styles';
 
 export default function LoginScreen({ navigation }) {
   const { signIn } = useAuth();
@@ -35,18 +36,18 @@ export default function LoginScreen({ navigation }) {
       <View style={styles.inner}>
         {/* Logo area */}
         <View style={styles.logoBox}>
-          <Text style={styles.logoIcon}></Text>
-          <Text style={styles.logoText}>NOTES</Text>
+          <Text style={styles.logoIcon}>🪶</Text>
+          <Text style={styles.logoText}>Notes</Text>
         </View>
-        <Text style={styles.subtitle}>Sign in to continue</Text>
+        <Text style={styles.subtitle}>Capture your thoughts</Text>
 
         {/* Inputs */}
         <View style={styles.inputGroup}>
-          <Text style={styles.label}>USERNAME / EMAIL</Text>
+          <Text style={styles.label}>Username or Email</Text>
           <TextInput
             style={[styles.input, focusedField === 'user' && styles.inputFocused]}
             placeholder="johndoe"
-            placeholderTextColor="#333"
+            placeholderTextColor={COLORS.TEXT_TERTIARY}
             value={username}
             onChangeText={setUsername}
             onFocus={() => setFocusedField('user')}
@@ -57,11 +58,11 @@ export default function LoginScreen({ navigation }) {
         </View>
 
         <View style={styles.inputGroup}>
-          <Text style={styles.label}>PASSWORD</Text>
+          <Text style={styles.label}>Password</Text>
           <TextInput
             style={[styles.input, focusedField === 'pass' && styles.inputFocused]}
             placeholder="••••••"
-            placeholderTextColor="#333"
+            placeholderTextColor={COLORS.TEXT_TERTIARY}
             value={password}
             onChangeText={setPassword}
             onFocus={() => setFocusedField('pass')}
@@ -104,6 +105,14 @@ export default function LoginScreen({ navigation }) {
           activeOpacity={0.7}
         >
           <Text style={styles.secondaryButtonText}>CREATE ACCOUNT</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.secondaryButton, { marginTop: 8 }]}
+          onPress={() => navigation.navigate('Verify', { email: '' })}
+          activeOpacity={0.7}
+        >
+          <Text style={[styles.secondaryButtonText, { opacity: 0.6 }]}>VERIFY EMAIL</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
